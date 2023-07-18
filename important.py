@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -12,10 +6,6 @@ import math
 import numpy as np
 import datetime
 from sklearn.metrics import pairwise_distances
-
-
-# In[3]:
-
 
 # 设置 GPU 设备
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -115,15 +105,6 @@ class C1DTLZ4(CDTLZ):
         super().__init__(NOBJ, K, 0, 1, problem_id=4)
 
 def dominates(fitness_a, fitness_b):
-    # 判断个体 a 是否支配个体 b
-    # 如果个体 a 在所有目标函数上都不大于个体 b，且在至少一个目标函数上小于个体 b，则 a 支配 b
-
-    # 注意：假设 fitness_a 和 fitness_b 是大小相同的张量或数组
-
-    # 检查是否所有目标函数值 a_i 都小于等于 b_i
-    lesser_equal = torch.all(fitness_a <= fitness_b)
-
-    # 检查是否至少存在一个目标函数值 a_i 小于 b_i
     lesser = torch.any(fitness_a < fitness_b)
 
     return lesser_equal and lesser
@@ -163,10 +144,6 @@ def non_dominated_sort(fitness_values):
     return fronts[:-1]
 
 
-# In[18]:
-
-
-# 设置参数
 NOBJ = 100
 K = 20
 BOUND_LOW = 0
@@ -190,10 +167,6 @@ ref_points = torch.cat(ref_points, dim=0).to(device)
 
 # 初始化种群并将其移动到指定设备device上面
 population = torch.rand(pop, problem.NDIM, dtype=torch.float32, device=device)
-
-
-# In[ ]:
-
 
 start_time = datetime.datetime.now()
 # NSGA-III算法迭代 # 捉对交叉
