@@ -55,7 +55,7 @@ class CDTLZ(Problem):
         self.problem_id = problem_id
 
     def evaluate(self, individual):
-        g = torch.sum(torch.square(individual[self.NOBJ-1:] - 0.5) - torch.cos(20 * math.pi * (individual[self.NOBJ-1:] - 0.5)))
+        g = torch.sum(torch.square(individual[self.NOBJ-1:] - 0.5) - torch.cos(20 * torch.tensor(np.pi, device=device) * (individual[self.NOBJ-1:] - 0.5)))
         f = 0.5 * torch.prod(individual[:self.NOBJ]) * (1 + g)
         return f
 
@@ -82,13 +82,13 @@ class C1DTLZ1(CDTLZ):
         super().__init__(NOBJ, K, 0, 1, problem_id=1)
 
     def evaluate(self, individual):
-        g = torch.sum(torch.square(individual[self.NOBJ-1:]) - torch.cos(20 * math.pi * (individual[self.NOBJ-1:] - 0.5)))
+        g = torch.sum(torch.square(individual[self.NOBJ-1:]) - torch.cos(20 * torch.tensor(np.pi, device=device) * (individual[self.NOBJ-1:] - 0.5)))
         h = torch.sum(individual[:self.NOBJ])
         f = torch.zeros(self.NOBJ)
         for i in range(self.NOBJ):
             f[i] = 0.5 * h * (1 + g)
             if i > 0:
-                f[i] *= torch.prod(torch.cos(individual[:self.NOBJ-i] * math.pi / 2))
+                f[i] *= torch.prod(torch.cos(individual[:self.NOBJ-i] * torch.tensor(np.pi, device=device) / 2))
         return f
 
 
