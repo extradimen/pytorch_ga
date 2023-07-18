@@ -2,7 +2,6 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import random
-import math
 import numpy as np
 import datetime
 from sklearn.metrics import pairwise_distances
