@@ -104,6 +104,7 @@ class C1DTLZ4(CDTLZ):
         super().__init__(NOBJ, K, 0, 1, problem_id=4)
 
 def dominates(fitness_a, fitness_b):
+    lesser_equal = torch.all(fitness_a <= fitness_b)
     lesser = torch.any(fitness_a < fitness_b)
 
     return lesser_equal and lesser
