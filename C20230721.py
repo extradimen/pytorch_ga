@@ -323,10 +323,10 @@ for gen in range(iteration):
     if (gen + 1) % 10 == 0:
         # 选取前10%的个体放到公共种群
         num_top_individuals = int(0.1 * pop_size)
-        top_individuals = torch.empty((0,))
+        top_individuals = torch.empty((0,)).to(device) 
         for population in populations:
             top_individuals=torch.cat((top_individuals, population[:num_top_individuals]), dim=0)
-        top_individuals = top_individuals.to(device)    
+          
         # 随机选择个体替换每个种群中的个体
         for i in range(num_populations):
             population = populations[i]
