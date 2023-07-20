@@ -1,3 +1,4 @@
+# 相比上一代，增加了多种群并行计算，更改了ref_points的计算
 import torch
 import torch.nn as nn
 import torch.optim as optim
