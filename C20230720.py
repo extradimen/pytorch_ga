@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
-
+# 重写了问题的定义，之前的错误
 import torch
 import torch.nn as nn
 import torch.optim as optim
