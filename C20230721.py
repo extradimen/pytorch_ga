@@ -319,7 +319,7 @@ for gen in range(iteration):
     print("Generation:", gen, "IGD:", torch.mean(torch.tensor(igd_all)))
 
     # 在每间隔10代的时候进行替换操作
-    if (gen + 1) % 10000 == 0:
+    if (gen + 1) % 10 == 0:
         # 选取前10%的个体放到公共种群
         num_top_individuals = int(0.1 * pop_size)
         top_individuals = torch.empty((0,))
