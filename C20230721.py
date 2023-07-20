@@ -326,7 +326,7 @@ for gen in range(iteration):
         top_individuals = torch.empty((0,))
         for population in populations:
             top_individuals=torch.cat((top_individuals, population[:num_top_individuals]), dim=0)
-            
+        top_individuals = top_individuals.to(device)    
         # 随机选择个体替换每个种群中的个体
         for i in range(num_populations):
             population = populations[i]
