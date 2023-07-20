@@ -229,7 +229,7 @@ for _ in range(num_populations):
 
 #ref_dirs = uniform_reference_points(nobj=3)
 pf = problem._calc_pareto_front(ref_points)
-
+pf = pf.to(device)
 start_time = datetime.datetime.now()
 # NSGA-III算法迭代 # 随机选取进行交叉
 for gen in range(iteration):
@@ -316,7 +316,7 @@ for gen in range(iteration):
         igd_all.append(calculate_igd(fitness_values, pf))
 
     # 输出IGD值
-    print("Generation:", gen, "IGD:", np.array(igd_all).mean())
+    print("Generation:", gen, "IGD:", torch.mean(torch.tensor(igd_all)))
 
     # 在每间隔10代的时候进行替换操作
     if (gen + 1) % 10000 == 0:
