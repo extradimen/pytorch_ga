@@ -314,7 +314,7 @@ for gen in range(iteration):
         populations[i] = population
 
         # 存储适应度值
-        igd_all.append(calculate_igd(fitness_values, pf))
+        igd_all.append(calculate_igd(pf, fitness_values))
 
     # 输出IGD值
     print("Generation:", gen, "IGD:", torch.mean(torch.tensor(igd_all)))
