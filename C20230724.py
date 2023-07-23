@@ -1,3 +1,4 @@
+#用cxSimulatedBinaryBounded算子替换原先的crossover算子
 import torch
 import torch.nn as nn
 import torch.optim as optim
